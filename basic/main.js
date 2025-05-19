@@ -15,10 +15,15 @@ camera.position.z = 5;
 
 // 3. Create and add a cube object
 const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshLambertMaterial({
-  color: "#468585",
-  emissive: "#468585", //emissive use to make interactive with light default will be black
-});
+// const material = new THREE.MeshPhongMaterial({
+//   color: "#468585",
+//   emissive: "#468585", //emissive use to make interactive with light default will be black
+//   shininess: 20
+// });
+const material = new THREE.MeshStandardMaterial({
+    color: "#468585",
+    emissive: "#468585", //emissive use to make interactive with light default will be black
+  });
 
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
