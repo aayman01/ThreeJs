@@ -48,10 +48,10 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 // 6. orbit control
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
+controls.enableDamping = true; // that allows users to interact with your 3D scene
 controls.dampingFactor = 0.05;
 controls.enableZoom = true;
-controls.enablePan = true;
+controls.enablePan = true; // allowing users to move the camera horizontally and vertically within the scene plane
 
 // 7. animate
 function animate() {
@@ -66,4 +66,11 @@ function animate() {
 
   renderer.render(scene, camera);
 }
+
+// 8. handle window sizing
+window.addEventListener('resize',() =>{
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+})
 animate();
