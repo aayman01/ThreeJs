@@ -1,3 +1,4 @@
+import { Sparkles } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
@@ -13,6 +14,7 @@ const RotatingCube = () => {
         <mesh ref={meshRef}>
             <cylinderGeometry args={[1, 1, 1]} />
             <meshLambertMaterial color="#468585" emissive="#468585" />
+            <Sparkles count={100} color="yellow" scale={2} size={6} speed={0.002} noise={0.2}/>
         </mesh>
     );
 };
