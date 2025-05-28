@@ -1,43 +1,44 @@
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-// import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 import { PerspectiveCamera } from "@react-three/drei";
 
-// import { calculateSizes } from "../constants/index.js";
+import { calculateSizes } from "../constants/index.js";
 import HeroCamera from "../shared/HeroCamera.jsx";
 import CanvasLoader from "../Shared/CanvasLoader.jsx";
 import HackerRoom from "../shared/HackerRoom.jsx";
-import { Leva, useControls } from "leva";
+import Target from "../shared/Target.jsx";
+
 
 const HeroSection = () => {
-  // const isSmall = useMediaQuery({ maxWidth: 440 });
-  // const isMobile = useMediaQuery({ maxWidth: 768 });
-  // const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
+  const isSmall = useMediaQuery({ maxWidth: 440 });
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
 
-  // const sizes = calculateSizes(isSmall, isMobile, isTablet);
+  const sizes = calculateSizes(isSmall, isMobile, isTablet);
 
-  const x = useControls("hackerRoom", {
-    positionX : {
-      value: 2.5,
-      min: -10,
-      max: 10
-    },
-    positionY : {
-      value: 2.5,
-      min: -10,
-      max: 10
-    },
-    positionZ : {
-      value: 2.5,
-      min: -10,
-      max: 10
-    },
-    scale : {
-    value : 0.1,
-    min : 0.0,
-    max : 1.0
-    }
-  })
+  // const x = useControls("hackerRoom", {
+  //   positionX : {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10
+  //   },
+  //   positionY : {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10
+  //   },
+  //   positionZ : {
+  //     value: 2.5,
+  //     min: -10,
+  //     max: 10
+  //   },
+  //   scale : {
+  //   value : 0.1,
+  //   min : 0.0,
+  //   max : 1.0
+  //   }
+  // })
 
   return (
     <section className="min-h-screen w-full flex flex-col relative">
@@ -50,23 +51,18 @@ const HeroSection = () => {
         </p>
       </div>
       <div className="w-full h-full absolute inset-0 ">
-        <Leva />
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             {/* To hide controller */}
             <PerspectiveCamera makeDefault position={[0, 0, 30]} />
             <HackerRoom
-              scale={x.scale}
-              position={[x.positionX, x.positionY, x.positionZ]}
-              rotation={[0.1, -Math.PI, 0]}
+              scale={sizes.deskScale}
+              position={sizes.deskPosition}
+              rotation={[0, -Math.PI, 0]} // using Math.PI to rotate 180 degrees
             />
-
-            {/* <group>
-              <Target position={sizes.targetPosition} />
-              <ReactLogo position={sizes.reactLogoPosition} />
-              <Rings position={sizes.ringPosition} />
-              <Cube position={sizes.cubePosition} />
-            </group> */}
+            <group>
+              <Target position={sizes.targetPosition}/>
+            </group>
 
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
