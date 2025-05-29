@@ -8,6 +8,9 @@ import HeroCamera from "../shared/HeroCamera.jsx";
 import CanvasLoader from "../Shared/CanvasLoader.jsx";
 import HackerRoom from "../shared/HackerRoom.jsx";
 import Target from "../shared/Target.jsx";
+import ReactLogo from "../shared/ReactLogo.jsx";
+import Cube from "../shared/Cude.jsx";
+import Rings from "../shared/Rings.jsx";
 
 
 const HeroSection = () => {
@@ -61,7 +64,10 @@ const HeroSection = () => {
               rotation={[0, -Math.PI, 0]} // using Math.PI to rotate 180 degrees
             />
             <group>
-              <Target position={sizes.targetPosition}/>
+              <Target position={sizes.targetPosition} />
+              <ReactLogo />
+              <Cube />
+              <Rings position={sizes.ringPosition} />
             </group>
 
             <ambientLight intensity={1} />
