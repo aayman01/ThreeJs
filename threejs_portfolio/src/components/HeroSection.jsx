@@ -63,17 +63,22 @@ const HeroSection = () => {
               position={sizes.deskPosition}
               rotation={[0, -Math.PI, 0]} // using Math.PI to rotate 180 degrees
             />
-            <group>
+            {/* <group>
               <Target position={sizes.targetPosition} />
               <ReactLogo />
               <Cube />
               <Rings position={sizes.ringPosition} />
-            </group>
+            </group> */}
 
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
           </Suspense>
         </Canvas>
+      </div>
+      <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+        <a href="#about" className="w-fit">
+          <button>Let's work together</button>
+        </a>
       </div>
     </section>
   );
